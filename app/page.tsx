@@ -287,7 +287,7 @@ export default function BusinessCard() {
         <footer className="py-6 px-4 bg-card border-t-2 border-border">
           <div className="max-w-4xl mx-auto text-center">
             <p className="font-sans text-sm text-muted-foreground mb-2">© 2025 Adrián Varga. Všetky práva vyhradené.</p>
-            <p className="font-sans text-xs text-muted-foreground">Vytvorené Futurio.</p>
+            <p className="font-sans text-xs text-muted-foreground">Vytvorené spoločnosťou PawLynx.</p>
           </div>
         </footer>
 
