@@ -19,6 +19,8 @@ export const metadata: Metadata = {
   title: "Martin Horváth - Real Estate Agent | Bratislava",
   description:
     "Experienced real estate agent helping clients buy, sell, and rent premium apartments and houses in Bratislava. Professional, trustworthy, and market expertise.",
+  authors: [{ name: "PawLynx", url: "https://pawlynx.com" }],
+  creator: "PawLynx",
 }
 
 export default function RootLayout({
