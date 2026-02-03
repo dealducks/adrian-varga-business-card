@@ -1,36 +1,36 @@
-import type React from "react"
-import type { Metadata } from "next"
-import { Inter, Playfair_Display } from "next/font/google"
-import "./globals.css"
+import type { Metadata } from "next";
+import { Cinzel, Josefin_Sans } from "next/font/google";
+import "./globals.css";
 
-const inter = Inter({
+const cinzel = Cinzel({
+  variable: "--font-cinzel",
   subsets: ["latin"],
-  display: "swap",
-  variable: "--font-inter",
-})
+  weight: ["400", "500", "600", "700"],
+});
 
-const playfairDisplay = Playfair_Display({
+const josefinSans = Josefin_Sans({
+  variable: "--font-josefin",
   subsets: ["latin"],
-  display: "swap",
-  variable: "--font-playfair",
-})
+  weight: ["300", "400", "500", "600", "700"],
+});
 
 export const metadata: Metadata = {
-  title: "Martin Horváth - Real Estate Agent | Bratislava",
-  description:
-    "Experienced real estate agent helping clients buy, sell, and rent premium apartments and houses in Bratislava. Professional, trustworthy, and market expertise.",
-  authors: [{ name: "PawLynx", url: "https://pawlynx.com" }],
-  creator: "PawLynx",
-}
+  title: "Adrián Varga | Real Estate Bratislava",
+  description: "Profesionálne realitné služby v Bratislave. Nájdite váš vysnívaný domov s odborníkom na nehnuteľnosti.",
+};
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode
+  children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${playfairDisplay.variable} antialiased`}>
-      <body>{children}</body>
+    <html lang="sk" className="scroll-smooth">
+      <body
+        className={`${cinzel.variable} ${josefinSans.variable} antialiased`}
+      >
+        {children}
+      </body>
     </html>
-  )
+  );
 }

@@ -1,311 +1,418 @@
-"use client"
+'use client';
 
-import { Button } from "@/components/ui/button"
-import { Card } from "@/components/ui/card"
 import {
-  Phone,
-  Mail,
-  MapPin,
-  Calendar,
-  Linkedin,
-  Facebook,
-  Instagram,
-  Star,
   Home,
-  Key,
+  Building2,
   TrendingUp,
-  ChevronLeft,
-  ChevronRight,
-} from "lucide-react"
-import { useState } from "react"
+  Shield,
+  Search,
+  FileCheck,
+  Key,
+  Mail,
+  Phone,
+  MapPin,
+  Award,
+  Users,
+  Clock
+} from 'lucide-react';
+import { useState } from 'react';
+import Image from "next/image";
 
-export default function BusinessCard() {
-  const [currentTestimonial, setCurrentTestimonial] = useState(0)
+export default function Page() {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    message: ''
+  });
 
-  const testimonials = [
-    {
-      text: "Adrián nám pomohol nájsť náš vysnívaný byt v centre mesta. Jeho znalosti trhu a dôslednosť urobili celý proces jednoduchým a bez stresu.",
-      author: "Anna & Peter K.",
-      initials: "AP",
-    },
-    {
-      text: "Profesionálny, spoľahlivý a vždy dostupný. Adrián predal náš dom rýchlo a za skvelú cenu. Určite odporúčam jeho služby!",
-      author: "Tomáš M.",
-      initials: "TM",
-    },
-    {
-      text: "Výnimočná služba od začiatku do konca. Adriánova odbornosť na bratislavskom trhu je bezkonkurenčná. Sme nesmierne spokojní s naším novým domovom!",
-      author: "Elena S.",
-      initials: "ES",
-    },
-  ]
-
-  const nextTestimonial = () => {
-    setCurrentTestimonial((prev) => (prev + 1) % testimonials.length)
-  }
-
-  const prevTestimonial = () => {
-    setCurrentTestimonial((prev) => (prev - 1 + testimonials.length) % testimonials.length)
-  }
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log('Form submitted:', formData);
+  };
 
   return (
-      <div className="min-h-screen bg-background">
-        {/* Hero Sekcia */}
-        <section
-            className="
-          relative
-          px-4
-          py-12 md:py-16 lg:py-20
-          bg-gradient-to-b from-muted/30 to-background
-          md:min-h-[58vh] lg:min-h-[64vh]
-        "
-        >
-          <div className="max-w-7xl mx-auto grid lg:grid-cols-12 gap-8 lg:gap-12 items-center lg:items-start">
-            {/* Portrét */}
-            <div className="lg:col-span-5 flex justify-center lg:justify-end">
-              <div className="relative">
-                <img
-                    src="/adrian-varga.jpg"
-                    alt="Adrián Varga - Realitný maklér"
-                    className="object-cover rounded-xl shadow-2xl w-64 h-80 sm:w-72 sm:h-96 lg:w-[22rem] lg:h-[28rem]"
-                />
-                <div className="absolute -bottom-4 -right-4 w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 bg-accent rounded-full flex items-center justify-center shadow-lg">
-                  <Home className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 text-accent-foreground" />
+    <main className="relative overflow-hidden">
+      {/* Hero Section - Exaggerated Minimalism */}
+      <section className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8">
+        <div className="absolute inset-0 -z-10">
+          <div className="absolute top-20 right-20 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
+          <div className="absolute bottom-20 left-20 w-96 h-96 bg-secondary/5 rounded-full blur-3xl" />
+        </div>
+
+        <div className="max-w-7xl mx-auto text-center">
+          <div className="mb-8 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium">
+            <MapPin className="w-4 h-4" />
+            <span>Bratislava</span>
+          </div>
+
+          <h1 className="font-[var(--font-heading)] font-bold tracking-tight mb-6">
+            <span className="block text-6xl sm:text-8xl lg:text-9xl text-foreground">
+              Adrián
+            </span>
+            <span className="block text-6xl sm:text-8xl lg:text-9xl text-primary mt-2">
+              Varga
+            </span>
+          </h1>
+
+          <p className="text-xl sm:text-2xl lg:text-3xl text-foreground/70 font-light max-w-3xl mx-auto mb-12 leading-relaxed">
+            Váš partner pri hľadaní <span className="text-primary font-medium">vysnívaného domova</span> v Bratislave
+          </p>
+
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <a
+              href="#kontakt"
+              className="group px-8 py-4 bg-primary text-white rounded-full font-medium text-lg transition-all duration-300 hover:bg-primary/90 hover:shadow-xl hover:shadow-primary/20 cursor-pointer"
+            >
+              Začnime spolu
+            </a>
+            <a
+              href="#sluzby"
+              className="px-8 py-4 border-2 border-primary/20 text-primary rounded-full font-medium text-lg transition-all duration-300 hover:border-primary hover:bg-primary/5 cursor-pointer"
+            >
+              Zistite viac
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Stats Section - Flowing into next section */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-transparent to-primary/5">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
+            {[
+              { icon: Award, number: '10+', label: 'Rokov skúseností' },
+              { icon: Users, number: '200+', label: 'Spokojných klientov' },
+              { icon: Home, number: '150+', label: 'Predaných nehnuteľností' }
+            ].map((stat, index) => (
+              <div
+                key={index}
+                className="text-center group cursor-pointer transition-all duration-300"
+              >
+                <stat.icon className="w-12 h-12 mx-auto mb-4 text-primary transition-transform duration-300 group-hover:scale-110" />
+                <div className="text-5xl font-[var(--font-heading)] font-bold text-primary mb-2">
+                  {stat.number}
+                </div>
+                <div className="text-lg text-foreground/70 font-light">
+                  {stat.label}
                 </div>
               </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* About Section - Seamless transition */}
+      <section id="o-mne" className="py-32 px-4 sm:px-6 lg:px-8 bg-primary/5">
+        <div className="max-w-5xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-16 items-center">
+            <div>
+              <h2 className="font-[var(--font-heading)] text-5xl lg:text-6xl font-bold text-foreground mb-6 leading-tight">
+                Realitný trh je môj svet
+              </h2>
+              <p className="text-lg text-foreground/70 leading-relaxed mb-6">
+                S viac ako 10-ročnými skúsenosťami v realitnom sektore v Bratislave vám pomôžem nájsť perfektnú nehnuteľnosť, ktorá zodpovedá vašim potrebám a rozpočtu.
+              </p>
+              <p className="text-lg text-foreground/70 leading-relaxed">
+                Špecializujem sa na rezidenčné nehnuteľnosti v Bratislave a okolí. Moja filozofia je jednoduchá: <span className="text-primary font-medium">osobný prístup, transparentnosť a profesionalita</span> v každom kroku.
+              </p>
             </div>
 
-            {/* Obsah */}
-            <div className="lg:col-span-7 text-center lg:text-left space-y-4 lg:space-y-5">
-              <div>
-                <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground mb-2">
-                  Adrián Varga
-                </h1>
-                <p className="font-sans text-lg sm:text-xl lg:text-2xl text-muted-foreground mb-3">
-                  Real Estate Agent
-                </p>
-                <p className="font-sans text-base sm:text-lg text-foreground max-w-md lg:max-w-xl lg:pr-6 mx-auto lg:mx-0">
-                  Pomôžem vám nájsť ideálny domov v Bratislave
-                </p>
-              </div>
-
-              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start pt-1">
-                <Button asChild size="lg" className="font-sans">
-                  <a href="tel:+421948321765">
-                    <Phone className="w-5 h-5 mr-2" />
-                    Zavolať
-                  </a>
-                </Button>
-                <Button asChild variant="outline" size="lg" className="font-sans bg-transparent">
-                  <a href="mailto:adrian.varga.realty@gmail.com">
-                    <Mail className="w-5 h-5 mr-2" />
-                    Poslať email
-                  </a>
-                </Button>
-              </div>
+            <div className="relative h-96 rounded-3xl overflow-hidden">
+              <Image
+                  src="/images/varga-image.jpg"
+                  alt="Adrián Varga"
+                  fill
+                  className="object-cover"
+              />
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* O mne */}
-        <section className="py-12 px-4 bg-card border-t border-border/50">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="relative inline-block mb-6">
-              <h2 className="font-serif text-3xl lg:text-4xl font-bold text-card-foreground">O mne</h2>
-              <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-accent rounded-full"></div>
-            </div>
-            <p className="font-sans text-lg text-card-foreground leading-relaxed max-w-3xl mx-auto">
-              S viac ako 10 rokmi skúseností na bratislavskom realitnom trhu poskytujem personalizované služby
-              pri kúpe, predaji a prenájme nehnuteľností. Moje nasadenie, profesionalita a spokojnosť klientov
-              vytvorili dlhodobé vzťahy po celom hlavnom meste.
+      {/* Services Section */}
+      <section id="sluzby" className="py-32 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-20">
+            <h2 className="font-[var(--font-heading)] text-5xl lg:text-7xl font-bold text-foreground mb-6">
+              Služby
+            </h2>
+            <p className="text-xl text-foreground/70 font-light max-w-2xl mx-auto">
+              Komplexné riešenia pre váš realitný sen
             </p>
           </div>
-        </section>
 
-        {/* Služby */}
-        <section className="py-12 px-4">
-          <div className="max-w-6xl mx-auto">
-            <h2 className="font-serif text-3xl lg:text-4xl font-bold text-center text-foreground mb-8">Služby</h2>
-            <div className="grid md:grid-cols-3 gap-6">
-              <Card className="p-6 text-center hover:shadow-xl hover:-translate-y-1 transition-all duration-300 h-full flex flex-col">
-                <div className="w-16 h-16 bg-accent rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Home className="w-8 h-8 text-accent-foreground" />
-                </div>
-                <h3 className="font-serif text-xl font-semibold mb-3">Predaj nehnuteľností</h3>
-                <p className="font-sans text-muted-foreground flex-grow">
-                  Odborné poradenstvo počas celého procesu predaja – od ocenenia až po odovzdanie.
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              {
+                icon: Search,
+                title: 'Hľadanie nehnuteľnosti',
+                description: 'Nájdem pre vás ideálnu nehnuteľnosť podľa vašich požiadaviek a rozpočtu.'
+              },
+              {
+                icon: TrendingUp,
+                title: 'Predaj nehnuteľnosti',
+                description: 'Predám vašu nehnuteľnosť za najlepšiu možnú cenu v optimálnom čase.'
+              },
+              {
+                icon: FileCheck,
+                title: 'Právne poradenstvo',
+                description: 'Kompletná pomoc s dokumentáciou a právnymi náležitosťami.'
+              },
+              {
+                icon: Shield,
+                title: 'Ocenenie nehnuteľnosti',
+                description: 'Presné ocenenie trhové hodnoty vašej nehnuteľnosti.'
+              },
+              {
+                icon: Key,
+                title: 'Prenájom',
+                description: 'Pomoc pri prenájme a správe vašich nehnuteľností.'
+              },
+              {
+                icon: Building2,
+                title: 'Investičné poradenstvo',
+                description: 'Odborné rady pre investície do nehnuteľností v Bratislave.'
+              }
+            ].map((service, index) => (
+              <div
+                key={index}
+                className="group p-8 rounded-3xl bg-white/50 dark:bg-white/5 border border-primary/10 hover:border-primary/30 transition-all duration-300 hover:shadow-xl hover:shadow-primary/5 cursor-pointer"
+              >
+                <service.icon className="w-12 h-12 text-primary mb-6 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3" />
+                <h3 className="font-[var(--font-heading)] text-2xl font-semibold text-foreground mb-4">
+                  {service.title}
+                </h3>
+                <p className="text-foreground/70 leading-relaxed">
+                  {service.description}
                 </p>
-              </Card>
-
-              <Card className="p-6 text-center hover:shadow-xl hover:-translate-y-1 transition-all duration-300 h-full flex flex-col">
-                <div className="w-16 h-16 bg-accent rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Key className="w-8 h-8 text-accent-foreground" />
-                </div>
-                <h3 className="font-serif text-xl font-semibold mb-3">Prenájom nehnuteľností</h3>
-                <p className="font-sans text-muted-foreground flex-grow">
-                  Nájdite ideálny prenájom alebo nájomcu s komplexnou podporou a preverovaním.
-                </p>
-              </Card>
-
-              <Card className="p-6 text-center hover:shadow-xl hover:-translate-y-1 transition-all duration-300 h-full flex flex-col">
-                <div className="w-16 h-16 bg-accent rounded-full flex items-center justify-center mx-auto mb-4">
-                  <TrendingUp className="w-8 h-8 text-accent-foreground" />
-                </div>
-                <h3 className="font-serif text-xl font-semibold mb-3">Analýza trhu</h3>
-                <p className="font-sans text-muted-foreground flex-grow">
-                  Podrobné trhové prehľady a ocenenia nehnuteľností na základe aktuálnych trendov.
-                </p>
-              </Card>
-            </div>
+              </div>
+            ))}
           </div>
-        </section>
-
-        {/* Referencie */}
-        <section className="py-12 px-4 bg-card border-t border-border/50">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="font-serif text-3xl lg:text-4xl font-bold text-center text-card-foreground mb-8">
-              Referencie klientov
-            </h2>
-            <div className="relative">
-              <Card className="p-8 text-center">
-                <div className="flex justify-center mb-4">
-                  {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="w-5 h-5 fill-accent text-accent" />
-                  ))}
-                </div>
-                <p className="font-sans text-card-foreground mb-6 text-lg leading-relaxed">
-                  "{testimonials[currentTestimonial].text}"
-                </p>
-                <div className="flex items-center justify-center gap-3">
-                  <div className="w-12 h-12 bg-accent rounded-full flex items-center justify-center">
-                  <span className="font-sans font-semibold text-accent-foreground text-sm">
-                    {testimonials[currentTestimonial].initials}
-                  </span>
-                  </div>
-                  <p className="font-sans text-sm text-muted-foreground">— {testimonials[currentTestimonial].author}</p>
-                </div>
-              </Card>
-
-              {/* Carousel Ovládanie */}
-              <div className="flex justify-center gap-4 mt-6">
-                <Button variant="outline" size="sm" onClick={prevTestimonial} className="w-10 h-10 p-0 bg-transparent">
-                  <ChevronLeft className="w-4 h-4" />
-                </Button>
-                <div className="flex gap-2 items-center">
-                  {testimonials.map((_, index) => (
-                      <button
-                          key={index}
-                          onClick={() => setCurrentTestimonial(index)}
-                          className={`w-2 h-2 rounded-full transition-colors ${
-                              index === currentTestimonial ? "bg-accent" : "bg-muted"
-                          }`}
-                      />
-                  ))}
-                </div>
-                <Button variant="outline" size="sm" onClick={nextTestimonial} className="w-10 h-10 p-0 bg-transparent">
-                  <ChevronRight className="w-4 h-4" />
-                </Button>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Kontakt */}
-        <section className="py-11 px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="font-serif text-3xl lg:text-4xl font-bold text-foreground mb-8">Kontaktujte ma</h2>
-
-            <div className="grid md:grid-cols-3 gap-8 mb-8">
-              <div className="flex flex-col items-center">
-                <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mb-4">
-                  <Phone className="w-8 h-8 text-primary-foreground" />
-                </div>
-                <h3 className="font-serif text-lg font-semibold mb-2">Telefón</h3>
-                <a
-                    href="tel:+421948321765"
-                    className="font-sans text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  +421 948 321 765
-                </a>
-              </div>
-
-              <div className="flex flex-col items-center">
-                <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mb-4">
-                  <Mail className="w-8 h-8 text-primary-foreground" />
-                </div>
-                <h3 className="font-serif text-lg font-semibold mb-2">Email</h3>
-                <a
-                    href="mailto:adrian.varga.realty@gmail.com"
-                    className="font-sans text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  adrian.varga.realty@gmail.com
-                </a>
-              </div>
-
-              <div className="flex flex-col items-center">
-                <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mb-4">
-                  <MapPin className="w-8 h-8 text-primary-foreground" />
-                </div>
-                <h3 className="font-serif text-lg font-semibold mb-2">Adresa</h3>
-                <p className="font-sans text-muted-foreground">Bratislava, Slovensko</p>
-              </div>
-            </div>
-
-            <div className="space-y-4">
-              <Button asChild size="lg" className="font-sans">
-                <a href="https://calendly.com/adrian-varga" target="_blank" rel="noopener noreferrer">
-                  <Calendar className="w-5 h-5 mr-2" />
-                  Naplánovať stretnutie
-                </a>
-              </Button>
-
-              <div className="flex justify-center space-x-6">
-                <a
-                    href="#"
-                    className="w-12 h-12 bg-muted rounded-full flex items-center justify-center hover:bg-accent transition-colors"
-                >
-                  <Linkedin className="w-6 h-6 text-muted-foreground hover:text-accent-foreground" />
-                </a>
-                <a
-                    href="#"
-                    className="w-12 h-12 bg-muted rounded-full flex items-center justify-center hover:bg-accent transition-colors"
-                >
-                  <Facebook className="w-6 h-6 text-muted-foreground hover:text-accent-foreground" />
-                </a>
-                <a
-                    href="#"
-                    className="w-12 h-12 bg-muted rounded-full flex items-center justify-center hover:bg-accent transition-colors"
-                >
-                  <Instagram className="w-6 h-6 text-muted-foreground hover:text-accent-foreground" />
-                </a>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Footer */}
-        <footer className="py-6 px-4 bg-card border-t-2 border-border">
-          <div className="max-w-4xl mx-auto text-center">
-            <p className="font-sans text-sm text-muted-foreground mb-2">© 2025 Adrián Varga. Všetky práva vyhradené.</p>
-            <p className="font-sans text-xs text-muted-foreground">Vytvorené spoločnosťou PawLynx.</p>
-          </div>
-        </footer>
-
-        {/* Fixné mobilné tlačidlá */}
-        <div className="fixed bottom-4 left-4 right-4 flex gap-3 md:hidden z-50">
-          <Button asChild className="flex-1 font-sans">
-            <a href="tel:+421948321765">
-              <Phone className="w-5 h-5 mr-2" />
-              Zavolať
-            </a>
-          </Button>
-          <Button asChild variant="outline" className="flex-1 font-sans bg-background/90 backdrop-blur-sm">
-            <a href="mailto:adrian.varga.realty@gmail.com">
-              <Mail className="w-5 h-5 mr-2" />
-              Email
-            </a>
-          </Button>
         </div>
-      </div>
-  )
+      </section>
+
+      {/* Process Section - Before/After concept */}
+      <section className="py-32 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-transparent via-secondary/5 to-transparent">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-20">
+            <h2 className="font-[var(--font-heading)] text-5xl lg:text-7xl font-bold text-foreground mb-6">
+              Ako to funguje
+            </h2>
+            <p className="text-xl text-foreground/70 font-light">
+              Jednoduchý proces k vášmu novému domovu
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-4 gap-8">
+            {[
+              { number: '01', title: 'Konzultácia', description: 'Zistíme vaše potreby a požiadavky' },
+              { number: '02', title: 'Vyhľadávanie', description: 'Nájdeme perfektné možnosti pre vás' },
+              { number: '03', title: 'Prehliadky', description: 'Navštívime vybrané nehnuteľnosti' },
+              { number: '04', title: 'Uzavretie', description: 'Dokončíme všetky formality' }
+            ].map((step, index) => (
+              <div key={index} className="text-center group cursor-pointer">
+                <div className="text-7xl font-[var(--font-heading)] font-bold text-primary/20 mb-6 transition-all duration-300 group-hover:text-primary/40 group-hover:scale-110">
+                  {step.number}
+                </div>
+                <h3 className="font-[var(--font-heading)] text-2xl font-semibold text-foreground mb-3">
+                  {step.title}
+                </h3>
+                <p className="text-foreground/70 leading-relaxed">
+                  {step.description}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Portfolio/Properties Section */}
+      <section className="py-32 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-20">
+            <h2 className="font-[var(--font-heading)] text-5xl lg:text-7xl font-bold text-foreground mb-6">
+              Portfólio
+            </h2>
+            <p className="text-xl text-foreground/70 font-light">
+              Úspešne realizované projekty
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[1, 2, 3, 4, 5, 6].map((item) => (
+              <div
+                key={item}
+                className="group relative h-80 rounded-3xl overflow-hidden cursor-pointer"
+              >
+                <Image
+                  src={`/images/property-${item}.jpg`}
+                  alt={`Projekt ${item}`}
+                  fill
+                  className="object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-foreground/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                  <div className="text-white">
+                    <h3 className="font-[var(--font-heading)] text-xl font-semibold mb-2">
+                      Projekt {item}
+                    </h3>
+                    <p className="text-white/80 text-sm">
+                      Bratislava
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section id="kontakt" className="py-32 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-primary/5 to-transparent">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-20">
+            <h2 className="font-[var(--font-heading)] text-5xl lg:text-7xl font-bold text-foreground mb-6">
+              Kontakt
+            </h2>
+            <p className="text-xl text-foreground/70 font-light">
+              Začnime váš príbeh
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-12">
+            {/* Contact Info */}
+            <div className="space-y-8">
+              <div className="flex items-start gap-4">
+                <div className="p-3 rounded-full bg-primary/10">
+                  <Phone className="w-6 h-6 text-primary" />
+                </div>
+                <div>
+                  <h3 className="font-semibold text-foreground mb-1">Telefón</h3>
+                  <a href="tel:+421 948 321 765" className="text-foreground/70 hover:text-primary transition-colors cursor-pointer">
+                    +421 948 321 765
+                  </a>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-4">
+                <div className="p-3 rounded-full bg-primary/10">
+                  <Mail className="w-6 h-6 text-primary" />
+                </div>
+                <div>
+                  <h3 className="font-semibold text-foreground mb-1">Email</h3>
+                  <a href="mailto:adrian@example.com" className="text-foreground/70 hover:text-primary transition-colors cursor-pointer">
+                    adrian.varga.realty@gmail.com
+                  </a>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-4">
+                <div className="p-3 rounded-full bg-primary/10">
+                  <MapPin className="w-6 h-6 text-primary" />
+                </div>
+                <div>
+                  <h3 className="font-semibold text-foreground mb-1">Adresa</h3>
+                  <p className="text-foreground/70">
+                    Bratislava, Slovensko
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-4">
+                <div className="p-3 rounded-full bg-primary/10">
+                  <Clock className="w-6 h-6 text-primary" />
+                </div>
+                <div>
+                  <h3 className="font-semibold text-foreground mb-1">Pracovný čas</h3>
+                  <p className="text-foreground/70">
+                    Pondelok - Piatok: 9:00 - 18:00<br />
+                    Víkend: Na dohovore
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Contact Form */}
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div>
+                <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
+                  Meno
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  value={formData.name}
+                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                  className="w-full px-4 py-3 rounded-xl bg-white/50 dark:bg-white/5 border border-primary/20 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 transition-colors"
+                  required
+                />
+              </div>
+
+              <div>
+                <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
+                  Email
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  className="w-full px-4 py-3 rounded-xl bg-white/50 dark:bg-white/5 border border-primary/20 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 transition-colors"
+                  required
+                />
+              </div>
+
+              <div>
+                <label htmlFor="phone" className="block text-sm font-medium text-foreground mb-2">
+                  Telefón
+                </label>
+                <input
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  value={formData.phone}
+                  onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                  className="w-full px-4 py-3 rounded-xl bg-white/50 dark:bg-white/5 border border-primary/20 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 transition-colors"
+                  required
+                />
+              </div>
+
+              <div>
+                <label htmlFor="message" className="block text-sm font-medium text-foreground mb-2">
+                  Správa
+                </label>
+                <textarea
+                  id="message"
+                  name="message"
+                  value={formData.message}
+                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                  rows={4}
+                  className="w-full px-4 py-3 rounded-xl bg-white/50 dark:bg-white/5 border border-primary/20 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 transition-colors resize-none"
+                  required
+                />
+              </div>
+
+              <button
+                type="submit"
+                className="w-full px-8 py-4 bg-primary text-white rounded-full font-medium text-lg transition-all duration-300 hover:bg-primary/90 hover:shadow-xl hover:shadow-primary/20 cursor-pointer"
+              >
+                Odoslať správu
+              </button>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="py-12 px-4 sm:px-6 lg:px-8 border-t border-primary/10">
+        <div className="max-w-7xl mx-auto text-center">
+          <p className="text-foreground/50 text-sm">
+            © {new Date().getFullYear()} Adrián Varga. Všetky práva vyhradené.
+          </p>
+        </div>
+      </footer>
+    </main>
+  );
 }
